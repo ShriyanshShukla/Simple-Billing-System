@@ -8,37 +8,14 @@ bill_number = random.randint(100,500)
 
 # *****FUNCTIONS*****
 def clear():
-    paneer_tikka_entry.delete(0, END)
-    honey_chilli_patato_entry.delete(0, END)
-    hakka_noodles_entry.delete(0, END)
-    crispy_corn_entry.delete(0, END)
-    veg_kothe_entry.delete(0, END)
+    all_entries = [paneer_tikka_entry,honey_chilli_patato_entry,hakka_noodles_entry,crispy_corn_entry,veg_kothe_entry,jeera_masala_soda_entry,virgin_mojito_entry,blue_lemon_entry,cold_coffee_entry,oreo_shake_entry,snacks_price_entry,beverages_price_entry,snacks_tax_entry,beverages_tax_entry]
 
-    jeera_masala_soda_entry.delete(0, END)
-    virgin_mojito_entry.delete(0, END)
-    blue_lemon_entry.delete(0, END)
-    cold_coffee_entry.delete(0, END)
-    oreo_shake_entry.delete(0, END)
-
-    paneer_tikka_entry.insert(0, 0)
-    honey_chilli_patato_entry.insert(0, 0)
-    hakka_noodles_entry.insert(0, 0)
-    crispy_corn_entry.insert(0, 0)
-    veg_kothe_entry.insert(0, 0)
-
-    jeera_masala_soda_entry.insert(0, 0)
-    virgin_mojito_entry.insert(0, 0)
-    blue_lemon_entry.insert(0, 0)
-    cold_coffee_entry.insert(0, 0)
-    oreo_shake_entry.insert(0, 0)
-
-    snacks_price_entry.delete(0, END)
-    beverages_price_entry.delete(0, END)
-    snacks_tax_entry.delete(0, END)
-    beverages_tax_entry.delete(0,END)
+    for index,entry in enumerate(all_entries):
+        entry.delete(0, END)
+        if index < 10:
+            entry.insert(0, 0)
 
     name_entry.delete(0, END)
-
     text.delete(1.0, END)
 
 def total():
@@ -50,7 +27,7 @@ def total():
     hcp_value = int(honey_chilli_patato_entry.get())*150
     hn_value = int(hakka_noodles_entry.get())*130
     cc_value = int(crispy_corn_entry.get())*130
-    vk_value = int(crispy_corn_entry.get())*140
+    vk_value = int(veg_kothe_entry.get())*140
 
     total_snacks_value = pt_value+hcp_value+hn_value+cc_value+vk_value
     snacks_price_entry.delete(0, END)
@@ -124,7 +101,7 @@ def total():
 root = Tk()
 root.title("Simple Billing System")
 root.geometry('1025x600')
-
+ 
 # *****HEADING*****
 heading = Label(root, text="Vyanjan Restaurant", font=("Times New Roman",25,'bold'), bg='DodgerBlue4', fg='yellow2', bd=15, relief=RAISED)
 heading.pack(fill=X, pady=2)
@@ -152,69 +129,38 @@ items.pack(pady=2)
 snacks = LabelFrame(items, text='Snacks', font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='yellow2', bd=15, relief=RAISED)
 snacks.grid(row=0, column=0)
 
-paneer_tikka = Label(snacks, text="Paneer Tikka (8 Pc.)", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-paneer_tikka.grid(row=0, column=0, padx=5, pady= 5)
-paneer_tikka_entry = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
-paneer_tikka_entry.grid(row=0, column=1, padx=5, pady= 5)
-paneer_tikka_entry.insert(0, 0)
+all_snacks = [None] * 5
+all_snacks_entries = [None] * 5
+snacks_names = ["Paneer Tikka (8 Pc.)", "Honey Chilli Potato", "Hakka Noodles", "Crispy Corn", "Veg Kothe"]
 
-honey_chilli_patato = Label(snacks, text="Honey Chilli Patato", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-honey_chilli_patato.grid(row=1, column=0, padx=5, pady= 5)
-honey_chilli_patato_entry = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
-honey_chilli_patato_entry.grid(row=1, column=1, padx=5, pady= 5)
-honey_chilli_patato_entry.insert(0, 0)
+for n in range(5):
+    all_snacks[n] = Label(snacks, text=snacks_names[n], font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
+    all_snacks[n].grid(row=n, column=0, padx=5, pady= 5)
+    all_snacks_entries[n] = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
+    all_snacks_entries[n].grid(row=n, column=1, padx=5, pady= 5)
+    all_snacks_entries[n].insert(0, 0)
 
-hakka_noodles = Label(snacks, text="Hakka Noodles", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-hakka_noodles.grid(row=2, column=0, padx=5, pady= 5)
-hakka_noodles_entry = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
-hakka_noodles_entry.grid(row=2, column=1, padx=5, pady= 5)
-hakka_noodles_entry.insert(0, 0)
+paneer_tikka,honey_chilli_patato,hakka_noodles,crispy_corn,veg_kothe = all_snacks
+paneer_tikka_entry,honey_chilli_patato_entry,hakka_noodles_entry,crispy_corn_entry,veg_kothe_entry = all_snacks_entries
 
-crispy_corn = Label(snacks, text="Crispy Corn", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-crispy_corn.grid(row=3, column=0, padx=5, pady= 5)
-crispy_corn_entry = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
-crispy_corn_entry.grid(row=3, column=1, padx=5, pady= 5)
-crispy_corn_entry.insert(0, 0)
-
-veg_kothe = Label(snacks, text="Veg Kothe", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-veg_kothe.grid(row=4, column=0, padx=5, pady= 5)
-veg_kothe_entry = Entry(snacks, font=("Times New Roman",15), bd=8, width=10)
-veg_kothe_entry.grid(row=4, column=1, padx=5, pady= 5)
-veg_kothe_entry.insert(0, 0)
 
 # *****BEVERAGES*****
 beverages = LabelFrame(items, text='Beverages', font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='yellow2', bd=15, relief=RAISED)
 beverages.grid(row=0, column=1)
 
-jeera_masala_soda = Label(beverages, text="Jeera Masala Soda", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-jeera_masala_soda.grid(row=0, column=0, padx=5, pady= 5)
-jeera_masala_soda_entry = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
-jeera_masala_soda_entry.grid(row=0, column=1, padx=5, pady= 5)
-jeera_masala_soda_entry.insert(0, 0)
+all_beverages = [None] * 5
+all_beverages_entries = [None] * 5
+beverages_names = ["Jeera Masala Soda", "Virgin Mojito", "Blue Lemon", "Cold Coffee", "Oreo Shake"]
 
-virgin_mojito = Label(beverages, text="Virgin Mojito", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-virgin_mojito.grid(row=1, column=0, padx=5, pady= 5)
-virgin_mojito_entry = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
-virgin_mojito_entry.grid(row=1, column=1, padx=5, pady= 5)
-virgin_mojito_entry.insert(0, 0)
+for n in range(5):
+    all_beverages[n] = Label(beverages, text=beverages_names[n], font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
+    all_beverages[n].grid(row=n, column=0, padx=5, pady= 5)
+    all_beverages_entries[n] = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
+    all_beverages_entries[n].grid(row=n, column=1, padx=5, pady= 5)
+    all_beverages_entries[n].insert(0, 0)
 
-blue_lemon = Label(beverages, text="Blue Lemon", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-blue_lemon.grid(row=2, column=0, padx=5, pady= 5)
-blue_lemon_entry = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
-blue_lemon_entry.grid(row=2, column=1, padx=5, pady= 5)
-blue_lemon_entry.insert(0, 0)
-
-cold_coffee = Label(beverages, text="Cold Coffee", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-cold_coffee.grid(row=3, column=0, padx=5, pady= 5)
-cold_coffee_entry = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
-cold_coffee_entry.grid(row=3, column=1, padx=5, pady= 5)
-cold_coffee_entry.insert(0, 0)
-
-oreo_shake = Label(beverages, text="Oreo Shake", font=("Times New Romen",15,'bold'), bg='DodgerBlue4', fg='snow')
-oreo_shake.grid(row=4, column=0, padx=5, pady= 5)
-oreo_shake_entry = Entry(beverages, font=("Times New Roman",15), bd=8, width=10)
-oreo_shake_entry.grid(row=4, column=1, padx=5, pady= 5)
-oreo_shake_entry.insert(0, 0)
+jeera_masala_soda,virgin_mojito,blue_lemon,cold_coffee,oreo_shake = all_beverages
+jeera_masala_soda_entry,virgin_mojito_entry,blue_lemon_entry,cold_coffee_entry,oreo_shake_entry = all_beverages_entries
 
 # *****BILL*****
 bill_area = Frame(items, bd=8, relief=RAISED)
@@ -251,7 +197,6 @@ beverages_tax_entry = Entry(prices, font=("Times New Roman",10), bd=8, width=18)
 beverages_tax_entry.grid(row=1, column=3, padx=10, pady=10)
 
 # *****BUTTONS*****
-
 buttons = Frame(prices, bd=8, relief=RAISED)
 buttons.grid(row=0, column=4, rowspan=2, padx=10)
 
