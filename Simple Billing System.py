@@ -8,6 +8,13 @@ bill_number = random.randint(100,500)
 
 # *****FUNCTIONS*****
 def clear():
+    global table_number, bill_number
+    table_number = random.randint(1, 20)
+    bill_number = random.randint(100, 500)
+
+    bill_entry.delete(0, END)
+    bill_entry.insert(0, bill_number)
+
     all_entries = [paneer_tikka_entry,honey_chilli_patato_entry,hakka_noodles_entry,crispy_corn_entry,veg_kothe_entry,jeera_masala_soda_entry,virgin_mojito_entry,blue_lemon_entry,cold_coffee_entry,oreo_shake_entry,snacks_price_entry,beverages_price_entry,snacks_tax_entry,beverages_tax_entry]
 
     for index,entry in enumerate(all_entries):
